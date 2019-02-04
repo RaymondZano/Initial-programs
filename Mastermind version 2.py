@@ -3,30 +3,33 @@
 """
 Created on Wed Jan 23 23:38:43 2019
 
+Version 2 of the Mastermind game
+This is a transition program to the final version.
+
+I used loop thru the dataframe 
+
 @author: raymondzano
 """
 
-import random #for the color randomization
+import random 
 import pandas as pd
 
 colors = ["black", "white", "red", "blue", "yellow"] #possible colors to guess
-colorRightCount = [0, 0, 0, 0, 0]
-colorRightGuess = [0, 0, 0, 0, 0]
-colorGuessCount = [0, 0, 0, 0, 0]
-colorWrongPosCount = [0, 0, 0, 0, 0]
-labels = ['Colors', 'Actual Count', 'Right Guess Count','Guess Count', 'Wrong Position Count']
-list_cols = [colors, colorRightCount, colorRightGuess, colorGuessCount, colorWrongPosCount]
+colorRightCount = [0, 0, 0, 0, 0] #initializing the values of the soon-to-be dataframe
+colorRightGuess = [0, 0, 0, 0, 0] #initializing the values of the soon-to-be dataframe
+colorGuessCount = [0, 0, 0, 0, 0] #initializing the values of the soon-to-be dataframe
+colorWrongPosCount = [0, 0, 0, 0, 0] #initializing the values of the soon-to-be dataframe
+labels = ['Colors', 'Actual Count', 'Right Guess Count','Guess Count', 'Wrong Position Count'] #different labels to be used in the dataframe
+list_cols = [colors, colorRightCount, colorRightGuess, colorGuessCount, colorWrongPosCount] #
 zipped = list(zip(labels, list_cols))
 data = dict(zipped)
 colorListCount = pd.DataFrame(data)
-colorListCount.iloc[:,2]
+
 color1 = random.choice(colors) #choosing the four colors to be guess
 color2 = random.choice(colors)
 color3 = random.choice(colors)
 color4 = random.choice(colors)
-tobeguess = [color1, color2, color3, color4]
-tobeguess[0]
-print(tobeguess)
+tobeguess = [color1, color2, color3, color4] #puts the guessed color to a list
 
 for i in range(len(tobeguess)): #updates the Actual Count column of the colorListCount table
     for j in range(len(colorListCount)):
@@ -42,8 +45,8 @@ print("""
               number of correct color but in wrong position
           """) #mechanics
 guessesTaken = 0 #initializing the guess taken by the player
-maxguess = 2
-while guessesTaken < maxguess:
+maxGuess = 2
+while guessesTaken < maxGuess:
     RightPosition = 0
     
     userGuessColor1 = input(f"""
@@ -57,32 +60,10 @@ while guessesTaken < maxguess:
     userGuessColor4 = input("""
     Fourth color: """)       
     userGuessColor = [userGuessColor1, userGuessColor2, userGuessColor3, userGuessColor4]
-    #userGuessColor[2]
-
+ 
     for i in range(len(userGuessColor)):        #for correct color in correct place
         if str(userGuessColor[i]) == str(tobeguess[i]):
             RightPosition += 1                  #counts the right positions
-
-    #for i in range(len(tobeguess)):             #for the right color
-    #    if str(userGuessColor[i]) == str(tobeguess[i]):
-    #        colorListCount.loc[str(userGuessColor[1]),0]
-    #        colorListCount.iloc[i,2] += 1       #put in the table the right guess per color
-
-    #colorListCount.keys()
-
-    #pd.print
-    #to reset the Guess Count column to zero
-    # userGuessColor[i]==0
-    #for i in range(len(userGuessColor)):        #counts the guess per color
-    #    for j in range(len(colorListCount)):
-    #        if str(userGuessColor[i]) == str(colorListCount.iloc[j,0]):
-    #            colorListCount.iloc[j,3] += 1   #puts in the table the count per guess per color 
-    
-    #for i in range(len(colorListCount)):
-    #    if colorListCount.iloc[i,1] > colorListCount.iloc[i,2]:
-    #        colorListCount.iloc[i,4] = colorListCount.iloc[i,3] - colorListCount.iloc[i,2]
-
-    #colorListCount.iloc[:,2]
     
     guessesTaken = guessesTaken + 1
     
@@ -100,6 +81,4 @@ while guessesTaken < maxguess:
                               {color3} as third, and
                               {color4} as the fourth one.
      You did it in {guessesTaken} guesses only.""")
-            guessesTaken = 20 #forcing exit after guessing the puzzle
-
-#there is a counter on how many a specific color is compared already
+            guessesTaken = maxGuess * 20 #forcing exit after guessing the puzzle
