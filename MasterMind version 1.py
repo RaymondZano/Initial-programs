@@ -7,9 +7,11 @@ Created on Fri Jan 25 03:25:19 2019
 
 Game: Mastermind - Most Basic Version
 
-This code is part of a Choose Your Own Adventure game - I just cut-paste-modified
+This code is part of a Choose Your Own Adventure game - I  cut-paste-modified
 accordingly to fit this page. The game was originally created last October 2018
-as one of the requirements for my Business Analytics degree.
+as one of the requirements for my Business Analytics master degree.
+
+This is limited to guessing two colors only.
 
 The more advanced Mastermind game is almost complete and will be posted immediately
 after I finished it. 
@@ -18,9 +20,9 @@ after I finished it.
 
 import random
 
-colors = ["black", "white", "red", "blue", "yellow"]
-color1 = random.choice(colors)
-color2 = random.choice(colors)
+colors = ["black", "white", "red", "blue", "yellow"] #list of color that can be guess
+color1 = random.choice(colors) #chooses the first color to be guess
+color2 = random.choice(colors) #chooses the second color to be guess
 print("""
 ===============================================================================
     #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #
@@ -69,8 +71,9 @@ print("""
           Good luck and see you in the other side.
           """)
 guessesTaken = 0
+maxGuess = 7 #can be change to increase or decrease difficulty
     
-while guessesTaken < 7:
+while guessesTaken < maxGuess: #loop for checking whether the guesses are correct
     RightPosition1 = 0
     RightPosition2 = 0
     TotRightPosition = 0 
@@ -81,28 +84,28 @@ while guessesTaken < 7:
           Possible colors: black, blue, red, white, yellow
               
           First color: 
-                  """)
+                  """) #first guess
     userColor2 = input("""
           Second color: 
-                  """)
+                  """) #second guess
 
-    if userColor1 == color1:
+    if userColor1 == color1: #checks if the first guess is the same as the first correct color
         RightPosition1 += 1
 
-    if userColor2 == color2:
+    if userColor2 == color2: #checks if the second guess is the same as the second correct color
         RightPosition2 += 1
         
-    TotRightPosition =  RightPosition1 + RightPosition2
+    TotRightPosition =  RightPosition1 + RightPosition2 #adds the correct guess, it must be two to win
 
     guessesTaken = guessesTaken + 1
     
-    if TotRightPosition != 2:
+    if TotRightPosition != 2: #if the number of correct guess is less than 2, allows user to guess again as along as less than maximum number of gueses
         print(f"""
           Sorry! You did not guess both colors correctly.
           HINT: You have {TotRightPosition} color in right position
               """)
  
-    elif TotRightPosition == 2:
+    elif TotRightPosition == 2: #if the player guesses the two correct colors
         print(f"""
           Wow! You guess the correct colors in their correct positions.
 
@@ -112,4 +115,4 @@ while guessesTaken < 7:
           You did it in {guessesTaken} guesses only.
 
               """)
-        guessesTaken = 100
+        guessesTaken = maxGuess * 2  #ensures the code will end once the correct colors are guess
