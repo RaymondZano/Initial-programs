@@ -6,7 +6,7 @@ Created on Mon Oct 15 23:02:48 2018
 @author: raymondzano
 This is the text adventure game where the basic mastermind game is part of.
 Do the adventure and see the other games.
-
+There are fail points that you may encounter, please let me know.
 I have a longer version idea of the game. I hope I have time to sit on it and release.
 """
 """
