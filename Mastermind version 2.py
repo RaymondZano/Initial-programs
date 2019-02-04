@@ -5,8 +5,10 @@ Created on Wed Jan 23 23:38:43 2019
 
 Version 2 of the Mastermind game
 This is a transition program to the final version.
+I used loop thru the dataframe to check the number of correct guess.
+Determining the currect color but incorrect place is challenging.
 
-I used loop thru the dataframe 
+Increased color to be guess to four.
 
 @author: raymondzano
 """
